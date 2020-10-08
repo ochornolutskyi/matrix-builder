@@ -1,0 +1,25 @@
+@import "../../COLORS_VERIABLES.scss";
+
+.red-button {
+   min-width: 100px;
+   max-width: 350px;
+   width: auto;
+   padding: 0 10px;
+   min-height: 40px;
+   border: none;
+   background-color: $redColor;
+   font-size: 1.1em;
+   text-transform: uppercase;
+   outline: none;
+   cursor: pointer;
+   transition: box-shadow 0.2s ease;
+   border-radius: 5px;
+   letter-spacing: 0.1em;
+   color: $buttonsTextColor;
+}
+.red-button:hover {
+   box-shadow: 0 0 2px 0 rgba($fontColorSecondary, 0.4);
+}
+.red-button:active {
+   box-shadow: inset 0 0 5px 0 rgba($buttonsTextColor, 0.2);
+}

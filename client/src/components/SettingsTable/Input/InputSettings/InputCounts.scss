@@ -1,0 +1,63 @@
+@import '../../../../COLORS_VERIABLES.scss';
+
+//remove arrows of number inputs
+/* Для Chrome */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   margin: 0;
+}
+/* Для Firefox */
+input[type="number"] {
+   -moz-appearance: textfield;
+}
+
+.input-wrapper {
+   width: 100%;
+   min-height: 25px;
+   margin-bottom: 15px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   font-size: 1.2em;
+   label {
+      display: block;
+      max-width: 330px;
+   }
+   .input-settings {
+      height: 100%;
+      display: flex;
+      .input-settings__input {
+         display: block;
+         max-width: 40px;
+         min-height: 25px;
+         padding: 2px 5px;
+         border: none;
+         border-top: 1px dashed #656666;
+         border-bottom: 1px dashed #656666;
+         background-color:$colorGray;
+         font-size: 0.9em;
+         text-align: right;
+      }
+      .input-control__button {
+         text-align: center;
+         width: 25px;
+         line-height: 25px;
+         border: 1px dashed #656666;
+         background-color:$colorGray;
+         cursor: pointer;
+         box-shadow: 0px 0px 2px 0px rgba(#656666, 1);
+      }
+      .input-control__button:first-child {
+         border-radius: 3px 0px 0px 3px;
+      }
+      .input-control__button:last-child {
+         border-radius: 0px 3px 3px 0px;
+      }
+      .input-control__button:active {
+         box-shadow: inset 0px 0px 3px 0px rgba(#656666, 1);
+      }
+   }
+}

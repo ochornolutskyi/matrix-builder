@@ -1,0 +1,13 @@
+.error-hint {
+   min-width: 450px;
+   height: 50px;
+   padding: 15px;
+   position: fixed;
+   text-align: center;
+   border-radius: 15px;
+   font-size: 1.3em;
+   background-color: #fff;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+}

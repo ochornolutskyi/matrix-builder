@@ -1,0 +1,9 @@
+export const SET_SETTINGS = "SET_SETTINGS";
+export const RESET_SETTINGS = "RESET_SETTINGS";
+export const CREATE_MATRIX = "CREATE_MATRIX";
+export const REBUILD_MATRIX = "REBUILD_MATRIX";
+export const INCREMENT_CELL = "INCREMENT_CELL";
+export const REMOVE_ROW = "REMOVE_ROW";
+export const ADD_ROW = "ADD_ROW";
+export const SET_NEAREST_IDS = "SET_NEAREST_IDS";
+export const RESET_NEAREST_IDS = "RESET_NEAREST_IDS";

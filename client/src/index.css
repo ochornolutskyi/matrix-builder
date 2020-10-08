@@ -1,0 +1,12 @@
+@font-face {
+   font-family: "Gotthard";
+   src: url("./fonts/Gotthard.otf");
+}
+@font-face {
+   font-family: "Nagonia";
+   src: url("./fonts//Nagonia.otf");
+   font-weight: normal;
+}
+* {
+   outline: none;
+}

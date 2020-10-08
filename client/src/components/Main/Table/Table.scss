@@ -1,0 +1,112 @@
+@import "../../../COLORS_VERIABLES.scss";
+
+$borderRadius: 7px;
+$border: 1px solid
+   rgba(
+      $color: #fff,
+      $alpha: 0.8,
+   );
+.table-matrix {
+   margin-top: 10px;
+   border-collapse: separate !important;
+   .same-value {
+      background-color: #fff;
+   }
+   .nearest-value {
+      color: #fff;
+      background-color: $fontColorSecondary;
+   }
+   th,
+   td {
+      user-select: none;
+      background-color: $colorGray;
+      color: #000;
+      text-align: center;
+   }
+   th:first-child {
+      border-radius: $borderRadius 0 0 0;
+   }
+   th:last-child {
+      border-right: $border;
+      border-radius: 0 $borderRadius 0 0;
+   }
+   th {
+      border: $border;
+      border-right: none;
+      padding: 5px;
+   }
+   td {
+      border: $border;
+      border-top: none;
+      border-right: none;
+      cursor: pointer;
+      min-width: 80px;
+      div {
+         padding: 5px;
+      }
+   }
+   td.sum-cell,
+   td.static-cell {
+      cursor: auto;
+   }
+   td:first-child {
+      cursor: auto;
+      min-width: 45px;
+   }
+   td:last-child {
+      min-width: auto;
+      border: none;
+      background-color: transparent;
+      vertical-align: middle;
+      div {
+         padding: 0px;
+      }
+   }
+   td:nth-last-child(2) {
+      border-right: $border;
+   }
+   tr:last-child {
+      td:first-child {
+         border-radius: 0 0 0 $borderRadius;
+      }
+   }
+
+   td:last-child.sum-cell {
+      background-color: $colorGray;
+      border-bottom: $border;
+      border-right: $border;
+      border-left: $border;
+      border-radius: 0 0 $borderRadius 0;
+   }
+   td:nth-last-child(2).average-cell {
+      border-right: none;
+   }
+   td > .percentage-cell {
+      background-color: #fff;
+      background: linear-gradient(to top, $redColor 0%, $redColor 100%)
+         no-repeat 100% 100%;
+   }
+}
+.same-value {
+   background-color: #fff;
+}
+.nearest-value {
+   color: #fff;
+   background-color: $fontColorSecondary;
+}
+.table-blacklight-hint {
+   margin-top: 15px;
+   display: flex;
+   div {
+      display: flex;
+      align-items: center;
+      div {
+         width: 20px;
+         height: 10px;
+         margin-right: 10px;
+      }
+      div:last-child {
+         margin-left: 15px;
+      }
+   }
+}

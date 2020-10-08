@@ -1,0 +1,36 @@
+@import '../../COLORS_VERIABLES.scss';
+
+.button-remove {
+   margin: 0;
+   height: 14px;
+   width: 14px;
+   cursor: pointer;
+   margin-left: 5px;
+   opacity: .7;
+
+   &__element {
+      display: block;
+      width: 100%;
+      height: 3px;
+      background-color:#fff;
+      position: relative;
+
+   }
+   &__element:first-child {
+      transform: rotateZ(45deg);
+      top: 5px;
+      left: 1px;
+   }
+   &__element:last-child {
+      transform: rotateZ(-45deg);
+      top: 2px;
+      left: 1px;
+   }
+}
+
+.button-remove:hover {
+   opacity: .5;
+   .button-remove__element {
+      background-color: $fontColorSecondary;
+   }
+}
