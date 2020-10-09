@@ -7,20 +7,38 @@ import ErrorHint from "../ErrorHint";
 import Input from "./Input";
 
 const inputClassName = "input-settings";
-const ROWS_COUNT_ERROR_MESSAGE = "Please, set the correct rows count";
-const COLUMNS_COUNT_ERROR_MESSAGE = "Please, set the correct columns count";
-const ROWS_AND_COLUMNS_COUNT_ERROR_MESSAGE =
-   "Please, set the correct rows and columns count";
-const checkSettings = (rowsCount, columnsCount) => {
+const ROWS_COUNT_ERROR_MESSAGE = "Please, set the correct rows value";
+const COLUMNS_COUNT_ERROR_MESSAGE = "Please, set the correct columns value";
+const CELLS_COUNT_ERROR_MESSAGE = "Please, set the correct cells value";
+const ROWS_COLUMNS_CELLS_COUNT_ERROR_MESSAGE =
+   "Please, set the correct rows, columns and cells value";
+const ROWS_COLUMNS_COUNT_ERROR_MESSAGE =
+   "Please, set the correct rows and columns value";
+const ROWS_CELLS_COUNT_ERROR_MESSAGE =
+   "Please, set the correct rows and cells value";
+const COLUMNS_CELLS_COUNT_ERROR_MESSAGE =
+   "Please, set the correct columns and cells value";
+const checkTargetCount = (targetCount) => targetCount === 0 || targetCount < 0;
+const checkCellsCount = (cellsCount) => cellsCount < 0;
+const checkSettings = (rowsCount, columnsCount, cellsCount) => {
    if (
-      (rowsCount === 0 || rowsCount < 0) &&
-      (columnsCount === 0 || columnsCount < 0)
+      checkTargetCount(rowsCount) &&
+      checkTargetCount(columnsCount) &&
+      checkCellsCount(cellsCount)
    ) {
-      return ROWS_AND_COLUMNS_COUNT_ERROR_MESSAGE;
-   } else if (rowsCount === 0 || rowsCount < 0) {
+      return ROWS_COLUMNS_CELLS_COUNT_ERROR_MESSAGE;
+   } else if (checkTargetCount(rowsCount) && checkTargetCount(columnsCount)) {
+      return ROWS_COLUMNS_COUNT_ERROR_MESSAGE;
+   } else if (checkTargetCount(rowsCount) && checkCellsCount(cellsCount)) {
+      return ROWS_CELLS_COUNT_ERROR_MESSAGE;
+   } else if (checkTargetCount(columnsCount) && checkCellsCount(cellsCount)) {
+      return COLUMNS_CELLS_COUNT_ERROR_MESSAGE;
+   } else if (checkTargetCount(rowsCount)) {
       return ROWS_COUNT_ERROR_MESSAGE;
-   } else if (columnsCount === 0 || columnsCount < 0) {
+   } else if (checkTargetCount(columnsCount)) {
       return COLUMNS_COUNT_ERROR_MESSAGE;
+   } else if (checkCellsCount(cellsCount)) {
+      return CELLS_COUNT_ERROR_MESSAGE;
    }
 };
 
@@ -30,19 +48,17 @@ const SettingsTable = () => {
    const [rowsCount, setRowsCount] = useState(settings.rowsCount);
    const [columnsCount, setColumnsCount] = useState(settings.columnsCount);
    const [cellsCount, setCellsCount] = useState(settings.cellsCount);
-   const [isError, setIsError] = useState(false);
-   const [errorText, setErrorText] = useState("");
+   const [error, setError] = useState(null);
 
    const showErrorMessage = (message) => {
-      setIsError(true);
-      setErrorText(message);
+      setError(message);
       setTimeout(() => {
-         setIsError(false);
-      }, 2000);
+         setError(null);
+      }, 2500);
    };
 
    const applySettingsHandler = () => {
-      const error = checkSettings(rowsCount, columnsCount);
+      const error = checkSettings(rowsCount, columnsCount, cellsCount);
       if (error) {
          showErrorMessage(error);
       } else {
@@ -78,7 +94,7 @@ const SettingsTable = () => {
             buttonText="Apply settings"
             buttonClickHandler={applySettingsHandler}
          />
-         {isError && <ErrorHint errorText={errorText} />}
+         {error && <ErrorHint errorText={error} />}
       </div>
    );
 };
