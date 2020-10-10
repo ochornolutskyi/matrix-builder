@@ -16,6 +16,10 @@ $border: 1px solid
       color: #fff;
       background-color: $fontColorSecondary;
    }
+   .max-value{
+      background-color: #d18576;
+      cursor: not-allowed;
+   }
    th,
    td {
       user-select: none;
@@ -83,7 +87,7 @@ $border: 1px solid
    }
    td > .percentage-cell {
       background-color: #fff;
-      background: linear-gradient(to top, $redColor 0%, $redColor 100%)
+      background: linear-gradient(to top, #d18576 0%, #d18576 100%)
          no-repeat 100% 100%;
    }
 }
@@ -93,6 +97,9 @@ $border: 1px solid
 .nearest-value {
    color: #fff;
    background-color: $fontColorSecondary;
+}
+.max-value{
+   background-color: #d18576;
 }
 .table-blacklight-hint {
    margin-top: 15px;

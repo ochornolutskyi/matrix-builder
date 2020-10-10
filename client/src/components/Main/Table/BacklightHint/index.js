@@ -9,6 +9,9 @@ const BacklightHint = () => {
          <div>
             <div className="nearest-value"></div> the nearest values
          </div>
+         <div>
+            <div className="max-value"></div> the max allowable values
+         </div>
       </div>
    );
 };

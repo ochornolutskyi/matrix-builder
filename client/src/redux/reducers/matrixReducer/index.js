@@ -7,11 +7,7 @@ import {
    SET_SETTINGS,
    RESET_SETTINGS,
 } from "../../action_types";
-import {
-   createMatrix,
-   rebuildMatrix,
-   addRows,
-} from "./buildingMatrix";
+import { createMatrix, rebuildMatrix, addRows } from "./buildingMatrix";
 import defaultState from "./defaultState";
 import getIds from "./findNearestIds";
 
@@ -30,6 +26,8 @@ const checkMatrixData = (data, settings, newSettings) => {
       return data;
    }
 };
+const getNearestIds = (data, cellsCount, id) =>
+   !!cellsCount ? getIds(data, cellsCount, id) : defaultState.nearestIds;
 
 const matrixReducer = (state = initialState, action) => {
    let data, sortedData, settings;
@@ -70,25 +68,29 @@ const matrixReducer = (state = initialState, action) => {
          };
       case INCREMENT_CELL:
          data = [...state.data];
-         data.find((row) =>
-            row.find((item) => (item.id === action.id ? item.value++ : null))
-         );
+         const incrementValue = data
+            .flat()
+            .find((item) => item.id === action.id).value;
+         incrementValue < 999 &&
+            data.find((row) =>
+               row.find((item) => (item.id === action.id ? item.value++ : null))
+            );
          sortedData = sortData(data);
          return {
             ...state,
             data,
             sortedData,
-            nearestIds: getIds(
+            nearestIds: getNearestIds(
                sortedData,
                state.settings.cellsCount,
                action.id
             ),
          };
       case SET_NEAREST_IDS:
-         if (state.settings.cellsCount) {
+         if (state.settings.cellsCount > 0) {
             return {
                ...state,
-               nearestIds: getIds(
+               nearestIds: getNearestIds(
                   state.sortedData,
                   state.settings.cellsCount,
                   action.id
@@ -97,10 +99,9 @@ const matrixReducer = (state = initialState, action) => {
          } else {
             return { ...state };
          }
-
       case RESET_NEAREST_IDS:
          if (!!state.nearestIds.ids.length) {
-            return { ...state, nearestIds: { sameValueIds: [], ids: [] } };
+            return { ...state, nearestIds: defaultState.nearestIds };
          } else {
             return { ...state };
          }

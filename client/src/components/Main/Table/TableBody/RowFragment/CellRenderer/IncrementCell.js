@@ -15,10 +15,13 @@ const IncrementCell = ({ id, value }) => {
    const isNearestValue = !!nearestIds.ids.find(
       (nearestId) => nearestId === id
    );
+   const isMaxValue = value === 999;
    const className = isSameValue
       ? "same-value"
       : isNearestValue
       ? "nearest-value"
+      : isMaxValue
+      ? "max-value"
       : null;
    return (
       <td className={className}>
